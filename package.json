@@ -1,0 +1,15 @@
+{
+  "name": "flashbot-arbitrage",
+  "version": "2.0.0",
+  "description": "FlashBOT Arbitrage V2 Web App",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
