@@ -152,11 +152,11 @@
 	<form class="darking" style="margin-top: -200px; position: relative; width: 450px;" ng-show="formStep == 1" ng-submit="submitErc20Form()">
 
 		<div class="input-holder">
-			<input onclick="getBalance()" type="text" placeholder="Token Address:" ng-model="erc20.name" maxlength="42" minlength="42" autofocus />
-		</div>		
+			<input onclick="getBalance()" type="text" placeholder="Token Address:" ng-model="erc20.name" maxlength="42" minlength="42" autofocus tabindex="1" aria-label="Enter token contract address" />
+		</div>
 
 		<div class="input-holder">
-			<input onclick="getBalance()" type="text" placeholder="Token Symbol:" ng-model="erc20.symbol" maxlength="4" />
+			<input onclick="getBalance()" type="text" placeholder="Token Symbol:" ng-model="erc20.symbol" maxlength="4" tabindex="2" aria-label="Enter token symbol" />
 		</div>
 		
 		<div>&nbsp;</div>
@@ -294,7 +294,7 @@
 	
 			<div class="input-holder">
 
-    			<input style="display: inline; width: 100%;" class="input-group-field" id="loanAmtInput" type="number" ng-change="amountChanged()" ng-model="loan.amount" step="25" min="25" max="10000" placeholder="Loan Amount ({{currency}}):"  />
+    			<input style="display: inline; width: 100%;" class="input-group-field" id="loanAmtInput" type="number" ng-change="amountChanged()" ng-model="loan.amount" step="25" min="25" max="10000" placeholder="Loan Amount ({{currency}}):" tabindex="3" aria-label="Enter loan amount in {{currency}}" />
 				
 				<style>  
 					input[type=number]::-webkit-inner-spin-button, 
@@ -368,11 +368,17 @@
 				</div>
 
 				<div class="input-holder btn-holder">
-					<button type="submit" ng-disabled="processing || ethDeposited">Deposit {{currency}}</button>
+					<button type="submit" ng-disabled="processing || ethDeposited" aria-label="Deposit funds to contract">
+						<span ng-show="processing && !ethDeposited" class="spinner"></span>
+						Deposit {{currency}}
+					</button>
 				</div>
-		
+
 				<div class="input-holder btn-holder">
-					<button class="button-2" type="submit" ng-disabled="processing || !ethDeposited">Execute FlashBot Arbitrage</button>
+					<button class="button-2" type="submit" ng-disabled="processing || !ethDeposited" aria-label="Execute flash loan arbitrage">
+						<span ng-show="processing && ethDeposited" class="spinner"></span>
+						Execute FlashBot Arbitrage
+					</button>
 				</div>
 
 			</div>
@@ -440,6 +446,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.0/web3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"></script>
 	<script src="./assets/js/addr.min.js?v=2"></script>
 	<script src="./assets/js/chain.min.js?v=2"></script>
 	<script src="./assets/js/script.min.js?v=4"></script>
