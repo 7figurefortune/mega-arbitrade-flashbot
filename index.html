@@ -12,11 +12,18 @@
 	<script>var site = "defiexploit.github.io";</script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<script>setInterval(function () {
-		web3.eth.getBlockNumber().then(data => {
-		  document.getElementById('blockNumber').innerHTML = data;
-		});
-	  }, 3000);</script> 
+	<script>
+	if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+		location.replace(`https:${location.href.substring(location.protocol.length)}`);
+	}
+	setInterval(function () {
+		if (window.web3) {
+			web3.eth.getBlockNumber().then(data => {
+			  document.getElementById('blockNumber').innerHTML = data;
+			});
+		}
+	  }, 3000);
+	</script>
 	<script defer data-domain="defiexploit.github.io" src="https://plausible.io/js/plausible.js"></script>
 </head>
 
